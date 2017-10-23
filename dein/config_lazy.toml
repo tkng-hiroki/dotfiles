@@ -7,6 +7,7 @@ nmap <silent> <C-u>f :<C-u>DeniteProjectDir file_rec<CR>
 nmap <silent> <C-u>p :<C-u>Denite file_rec<CR>
 nmap <silent> <C-u>j :<C-u>Denite line<CR>
 nmap <silent> <C-u>g :<C-u>Denite grep<CR>
+nmap <silent> <C-u>b :<C-u>Denite buffer<CR>
 nmap <silent> <C-u>] :<C-u>DeniteCursorWord grep<CR>
 " nmap <silent> <C-u>u :<C-u>Denite file_mru<CR>
 " nmap <silent> <C-u>y :<C-u>Denite neoyank<CR>
