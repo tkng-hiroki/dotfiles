@@ -37,9 +37,6 @@ set directory=$HOME/vimfiles/backup,c:\temp
 set history=1000
 set undodir=$HOME/vimfiles/undo
 
-" Misc
-set autochdir
-
 " Dein
 if &compatible
   set nocompatible
@@ -49,6 +46,7 @@ set shellslash
 let s:dein_dir=expand('$HOME/dein/plugin')
 let s:dein_rep_dir=expand('$HOME/dein/dein.vim')
 let s:dein_config=expand('$HOME/dein/config.toml')
+let s:dein_config_lazy=expand('$HOME/dein/config_lazy.toml')
 
 if &runtimepath !~# 'dein.vim'
   if !isdirectory(s:dein_rep_dir)
@@ -60,6 +58,7 @@ endif
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir, [$MYVIMRC, s:dein_config])
   call dein#load_toml(s:dein_config)
+  call dein#load_toml(s:dein_config_lazy, {'lazy': 1})
   call dein#end()
   call dein#save_state()
 endif
@@ -69,24 +68,4 @@ syntax enable
 
 if dein#check_install()
   call dein#install()
-endif
-
-" Denite
-" toml‚Ìhook_post_source‚¾‚Æ”½‰f‚³‚ê‚È‚©‚Á‚½‚Ì‚Å.
-if executable('rg')
-  call denite#custom#var('file_rec', 'command', ['rg', '--files', '--glob', '!.git', '!.svn', ''])
-  call denite#custom#var('grep', 'command', ['rg'])
-  call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--no-heading'])
-  call denite#custom#var('grep', 'recursive_opts', [])
-  call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-  call denite#custom#var('grep', 'separator', ['--'])
-  call denite#custom#var('grep', 'final_opts', [])
-elseif executable('ag')
-  call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-  call denite#custom#var('grep', 'command', ['ag'])
-  call denite#custom#var('grep', 'default_opts', ['-i', '--vimgrep'])
-  call denite#custom#var('grep', 'recursive_opts', [])
-  call denite#custom#var('grep', 'pattern_opt', [])
-  call denite#custom#var('grep', 'separator', ['--'])
-  call denite#custom#var('grep', 'final_opts', [])
 endif

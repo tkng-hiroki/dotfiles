@@ -23,9 +23,6 @@ hook_post = '''
 '''
 
 [[plugins]]
-repo = 'Shougo/denite.nvim'
-
-[[plugins]]
 repo = 'itchyny/lightline.vim'
 hook_add = '''
   set laststatus=2
