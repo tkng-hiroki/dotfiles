@@ -6,6 +6,7 @@ set softtabstop=4
 set cinoptions+=g1
 set cinoptions+=h1
 set indentexpr=GetCppIndent()
+set nowrap
 
 function! GetCppIndent()
     let curr_line = getpos('.')[1]
