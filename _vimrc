@@ -20,7 +20,7 @@ function! GetCppIndent()
         return ns_indent
     endif
     return cindent('.')
-endfunction 
+endfunction
 
 " Mapping
 map J <C-d>
@@ -29,6 +29,7 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-h> <C-w>h
 map <C-l> <C-w>l
+nnoremap gs :vertical wincmd f<CR>
 
 " Backup
 set backup
@@ -37,6 +38,9 @@ set swapfile
 set directory=$HOME/vimfiles/backup,c:\temp
 set history=1000
 set undodir=$HOME/vimfiles/undo
+
+" Doxygen
+let g:load_doxygen_syntax=1
 
 " Dein
 if &compatible

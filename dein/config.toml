@@ -3,7 +3,7 @@ repo = 'Shougo/dein.vim'
 
 [[plugins]]
 repo = 'Shougo/neocomplete.vim'
-hook_post = '''
+hook_add = '''
   " Vim‹N“®‚Éneocomplete‚ğ—LŒø‚É‚·‚é
   let g:neocomplete#enable_at_startup = 1
   " smartcase—LŒø‰». ‘å•¶š‚ª“ü—Í‚³‚ê‚é‚Ü‚Å‘å•¶š¬•¶š‚Ì‹æ•Ê‚ğ–³‹‚·‚é
