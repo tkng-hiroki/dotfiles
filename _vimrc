@@ -1,10 +1,13 @@
+" Encode
+set encoding=utf-8
+
 " Input
 set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-set cinoptions+=g1
-set cinoptions+=h1
+set cinoptions+=g0
+set cinoptions+=h4
 set indentexpr=GetCppIndent()
 set nowrap
 
