@@ -59,7 +59,7 @@ class Source(Base):
         if not context['__patterns']:
             return []
 
-        args = 'es.exe '
+        args = 'es.exe -n 100 '
         args += context['__arguments']
         args += context['__patterns']
 
