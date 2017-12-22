@@ -43,3 +43,6 @@ hook_add = '''
   let g:bookmark_sign = '>>'
   let g:bookmark_auto_close = 1
 '''
+
+[[plugins]]
+repo = 'thinca/vim-qfreplace'
