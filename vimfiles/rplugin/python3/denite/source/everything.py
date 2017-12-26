@@ -48,6 +48,9 @@ class Source(Base):
         super().__init__(vim)
         self.name = 'everything'
         self.kind = 'file'
+        self.vars = {
+            'default_opts': ['!.obj'],
+        }
 
     def on_init(self, context):
         context['__proc'] = None
@@ -65,7 +68,7 @@ class Source(Base):
 
         directory = context['args'][0] if len(
             context['args']) > 0 else context['path']
-        context['__directory'] = follow_link(abspath(self.vim, directory))
+        context['__directory'] = [follow_link(abspath(self.vim, directory))]
 
     def on_close(self, context):
         if context['__proc']:
@@ -80,7 +83,7 @@ class Source(Base):
             if (not context['input']):
                 return []
 
-            context['__patterns'] = context['input']
+            context['__patterns'] = context['input'].split()
 
         if context['__proc']:
             return self.__async_gather_candidates(context, context['async_timeout'])
@@ -88,9 +91,10 @@ class Source(Base):
         if not context['__patterns']:
             return []
 
-        args = 'es.exe -n 100 '
+        args = ['es.exe']
         args += context['__arguments']
-        args += context['__directory'] + ' '
+        args += self.vars['default_opts']
+        args += context['__directory']
         args += context['__patterns']
 
         self.print_message(context, args)

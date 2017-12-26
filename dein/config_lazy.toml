@@ -60,4 +60,6 @@ if dein#tap('denite.nvim') && dein#tap('vim-qfreplace')
   endfunction
   call denite#custom#action('file', 'qfreplace', function('MyDeniteReplace'))
 endif
+
+call denite#custom#var('everything', 'default_opts', ['-n', '100', '!.obj', '!.o'])
 '''
