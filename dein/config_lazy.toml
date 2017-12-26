@@ -15,6 +15,7 @@ nmap <silent> [denite]; :<C-u>Denite -resume -immediately -select=+1<CR>
 nmap <silent> [denite]- :<C-u>Denite -resume -immediately -select=-1<CR>
 nmap <silent> [denite]r :<C-u>Denite -resume -mode=normal<CR>
 nmap <silent> [denite]e :<C-u>Denite everything<CR>
+nmap <silent> [denite]w :<C-u>DeniteProjectDir everything<CR>
 " nmap <silent> / :<C-u>Denite -auto-resize line<CR>
 " nmap <silent> [denite]<C-d> :<C-u>call denite#start([{'name': 'file_rec', 'args': ['~/dotfiles']}])<CR>
 " nmap <silent> <C-u>u :<C-u>Denite file_mru<CR>

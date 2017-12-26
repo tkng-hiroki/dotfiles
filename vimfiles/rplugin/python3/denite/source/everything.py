@@ -1,6 +1,7 @@
 from denite import util, process
 from .base import Base
 import os
+import os.path
 from denite.util import abspath
 
 def _candidate(result, path):
@@ -16,6 +17,30 @@ def _candidate(result, path):
         'action__col': result[2],
         'action__text': result[3],
     }
+
+def follow_link(path):
+    path = os.path.abspath(path)
+    path_fragments = []
+    current = ""
+    while True:
+        path, child = os.path.split(path)
+        if child == '':
+            current = path # /
+            break
+        path_fragments.insert(0, child)
+    while path_fragments:
+        current = follow_child(current, path_fragments[0])
+        path_fragments = path_fragments[1:]
+    return current
+
+def follow_child(current, child):
+    result = os.path.join(current, child)
+    if not os.path.islink(result):
+        return result
+    link = os.readlink(result)
+    if os.path.isabs(link):
+        return link
+    return os.path.abspath(os.path.join(current, link))
 
 class Source(Base):
 
@@ -37,6 +62,10 @@ class Source(Base):
                 context['__arguments'] += '-i '
             elif arg == 'word':
                 context['__arguments'] += '-w '
+
+        directory = context['args'][0] if len(
+            context['args']) > 0 else context['path']
+        context['__directory'] = follow_link(abspath(self.vim, directory))
 
     def on_close(self, context):
         if context['__proc']:
@@ -61,6 +90,7 @@ class Source(Base):
 
         args = 'es.exe -n 100 '
         args += context['__arguments']
+        args += context['__directory'] + ' '
         args += context['__patterns']
 
         self.print_message(context, args)

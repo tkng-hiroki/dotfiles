@@ -1,3 +1,4 @@
 vimfiles/backup
 vimfiles/undo
 dein/plugin
+/vimfiles/rplugin/python3/denite/source/__pycache__/*.pyc

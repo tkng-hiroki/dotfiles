@@ -25,6 +25,9 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'Shougo/neoinclude.vim'
+
+[[plugins]]
 repo = 'itchyny/lightline.vim'
 hook_add = '''
   set laststatus=2
