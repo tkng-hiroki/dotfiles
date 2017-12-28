@@ -49,3 +49,4 @@ hook_add = '''
 
 [[plugins]]
 repo = 'thinca/vim-qfreplace'
+

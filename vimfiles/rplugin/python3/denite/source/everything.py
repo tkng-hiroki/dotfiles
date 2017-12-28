@@ -50,6 +50,8 @@ class Source(Base):
         self.kind = 'file'
         self.vars = {
             'default_opts': ['!.obj'],
+            'max_results': 100,
+            'min_interactive_pattern': 3,
         }
 
     def on_init(self, context):
@@ -80,7 +82,7 @@ class Source(Base):
         if context['event'] == 'interactive':
             self.on_close(context)
 
-            if (not context['input']):
+            if (len(context['input']) < self.vars['min_interactive_pattern']):
                 return []
 
             context['__patterns'] = context['input'].split()
@@ -94,6 +96,7 @@ class Source(Base):
         args = ['es.exe']
         args += context['__arguments']
         args += self.vars['default_opts']
+        args += ['-n', str(self.vars['max_results'])]
         args += context['__directory']
         args += context['__patterns']
 

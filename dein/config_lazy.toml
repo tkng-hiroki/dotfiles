@@ -61,5 +61,48 @@ if dein#tap('denite.nvim') && dein#tap('vim-qfreplace')
   call denite#custom#action('file', 'qfreplace', function('MyDeniteReplace'))
 endif
 
-call denite#custom#var('everything', 'default_opts', ['-n', '100', '!.obj', '!.o'])
+call denite#custom#var('everything', 'default_opts', ['!.obj', '!.o'])
 '''
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+hook_add = '''
+let g:python3_host_prog = 'python'
+'''
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+depends = 'context_filetype.vim'
+depends = 'nvim-yarp'
+depends = 'vim-hug-neovim-rpc'
+on_i = 1
+hook_source = '''
+let g:deoplete#enable_at_startup = 1
+'''
+
+# [[plugins]]
+# repo = 'autozimu/LanguageClient-neovim'
+# depends = 'deoplete.nvim'
+# on_ft = ['cpp']
+# build = './install.sh'
+# hook_source = '''
+# set hidden
+# let g:LanguageClient_serverCommands = {
+#     \ 'cpp': ['e:\projects\cquery\cquery\build\release\bin\cquery', '--language-server'],
+#     \ }
+# let g:LanguageClient_autoStart = 1
+# " Use an absolute configuration path if you want system-wide settings
+# let g:LanguageClient_settingsPath = 'cquery/settings.json'
+# nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+# nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+# nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+# '''
+
+# [[plugins]]
+# repo = 'w0rp/ale'

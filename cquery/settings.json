@@ -1,0 +1,6 @@
+{
+        "initializationOptions": {
+                "cacheDirectory": "/tmp/cquery",
+                "resourceDirectory": "C:/Users/Tokunaga_Hiroki/dotfiles/cquery/clang_resource_dir"
+        }
+}
